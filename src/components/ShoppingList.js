@@ -7,7 +7,7 @@ function ShoppingList({ items }) {
 
   
   function handleChange(event){
-    setSelectedCategory(()=>event.target.value)
+    setSelectedCategory(event.target.value)
     
   }
   const filteredList = items.filter(item=>item.category===selectedCategory)
@@ -22,10 +22,13 @@ function ShoppingList({ items }) {
         </select>
       </div>
       <ul className="Items">
-        {filteredList.length<1?items.map((item) => (
-          <Item key={item.id} id={item.id} name={item.name} category={item.category}/>
-        )):filteredList.map((item) => (
-          <Item key={item.id} id={item.id} name={item.name} category={item.category}/>
+        {filteredList.length<1?
+          items.map((item) => (
+            <Item key={item.id} id={item.id} name={item.name} category={item.category}/>
+        ))
+        :
+          filteredList.map((item) => (
+            <Item key={item.id} id={item.id} name={item.name} category={item.category}/>
         ))
         
         }
